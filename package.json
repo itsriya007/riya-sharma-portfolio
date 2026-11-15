@@ -1,0 +1,30 @@
+{
+  "name": "riya-sharma-portfolio",
+  "version": "1.0.0",
+  "description": "Production-ready Full-Stack Developer Portfolio for Riya Sharma (Node.js & Fintech Architect)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node -e \"console.log('No tests configured')\""
+  },
+  "keywords": [
+    "portfolio",
+    "nodejs",
+    "express",
+    "fintech",
+    "insurtech",
+    "backend-developer",
+    "full-stack",
+    "microservices"
+  ],
+  "author": "Riya Sharma <riya0077224@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "nodemailer": "^6.9.16"
+  }
+}
