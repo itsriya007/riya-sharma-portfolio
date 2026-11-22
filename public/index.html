@@ -74,6 +74,16 @@
 </head>
 <body class="bg-[#FAF8F5] text-[#181A22] antialiased min-h-screen selection:bg-[#E2DAF5] selection:text-[#181A22]">
 
+  <!-- Top Reading Progress Indicator Bar -->
+  <div id="scrollProgressBar"></div>
+
+  <!-- Background Ambient Floating Aurora Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+    <div class="aurora-bg-orb-1 absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#8E7CC3]/15 blur-3xl"></div>
+    <div class="aurora-bg-orb-2 absolute top-1/3 -right-40 w-[28rem] h-[28rem] rounded-full bg-[#3BAAA0]/12 blur-3xl"></div>
+    <div class="aurora-bg-orb-1 absolute bottom-1/4 -left-32 w-80 h-80 rounded-full bg-[#FF6584]/10 blur-3xl"></div>
+  </div>
+
   <!-- ===================================================================
        1. Top Announcement Bar (Clean status, no duplicate download link)
        =================================================================== -->
@@ -362,7 +372,7 @@
         <!-- 4-Grid Stats Bento under Avatar -->
         <div class="grid grid-cols-2 gap-4">
           
-          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group">
+          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group reveal-scale-up stagger-1">
             <div class="text-3xl font-heading font-extrabold text-[#181A22] group-hover:text-[#8E7CC3] transition-colors flex items-baseline">
               <span data-counter-target="2" data-counter-suffix="+">2+</span>
             </div>
@@ -372,7 +382,7 @@
             </div>
           </div>
 
-          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group">
+          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group reveal-scale-up stagger-2">
             <div class="text-3xl font-heading font-extrabold text-[#181A22] group-hover:text-[#8E7CC3] transition-colors flex items-baseline">
               <span data-counter-target="3" data-counter-suffix=" Yrs">3 Yrs</span>
             </div>
@@ -382,7 +392,7 @@
             </div>
           </div>
 
-          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group">
+          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group reveal-scale-up stagger-3">
             <div class="text-3xl font-heading font-extrabold text-[#181A22] group-hover:text-[#8E7CC3] transition-colors flex items-baseline">
               <span data-counter-target="2">2</span>
             </div>
@@ -392,7 +402,7 @@
             </div>
           </div>
 
-          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group">
+          <div class="interactive-card p-5 rounded-2xl bg-[#FFFFFF] border border-[#E8E3DA] relative overflow-hidden group reveal-scale-up stagger-4">
             <div class="text-3xl font-heading font-extrabold text-[#181A22] group-hover:text-[#8E7CC3] transition-colors flex items-baseline">
               <span data-counter-target="99.9" data-counter-suffix="%">99.9%</span>
             </div>
@@ -426,7 +436,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         <!-- Pillar 1: InsurTech & Backend Engineering -->
-        <div class="interactive-card-lavender p-8 rounded-3xl bg-[#FFFFFF] relative group">
+        <div class="interactive-card-lavender p-8 rounded-3xl bg-[#FFFFFF] relative group reveal-slide-left stagger-1">
           <div class="w-12 h-12 rounded-2xl bg-[#F2EEFA] text-[#8E7CC3] flex items-center justify-center mb-6 shadow-sm border border-[#8E7CC3]/30">
             <span class="material-symbols-outlined text-2xl">dns</span>
           </div>
@@ -454,7 +464,7 @@
         </div>
 
         <!-- Pillar 2: Technical Communication & Support -->
-        <div class="interactive-card-teal p-8 rounded-3xl bg-[#FFFFFF] relative group">
+        <div class="interactive-card-teal p-8 rounded-3xl bg-[#FFFFFF] relative group reveal-slide-right stagger-2">
           <div class="w-12 h-12 rounded-2xl bg-[#E7F7F5] text-[#195E57] flex items-center justify-center mb-6 shadow-sm border border-[#3BAAA0]/30">
             <span class="material-symbols-outlined text-2xl">forum</span>
           </div>
@@ -528,7 +538,7 @@
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             <!-- Platform 1: Tata Motors -->
-            <div class="p-6 rounded-2xl border border-[#E8E3DA] bg-[#FAF8FE] space-y-4">
+            <div class="p-6 rounded-2xl border border-[#E8E3DA] bg-[#FAF8FE] space-y-4 reveal-slide-left stagger-1">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-[#8E7CC3] text-xl">directions_car</span>
@@ -563,7 +573,7 @@
             </div>
 
             <!-- Platform 2: Isuzu Private Car Insurance -->
-            <div class="p-6 rounded-2xl border border-[#E8E3DA] bg-[#F4F9F8] space-y-4">
+            <div class="p-6 rounded-2xl border border-[#E8E3DA] bg-[#F4F9F8] space-y-4 reveal-slide-right stagger-2">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <span class="material-symbols-outlined text-[#3BAAA0] text-xl">local_shipping</span>
@@ -647,7 +657,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- Card 1: Backend & Architecture -->
-        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4">
+        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4 reveal-scale-up stagger-1">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#F2EEFA] text-[#8E7CC3]">
               <span class="material-symbols-outlined text-xl">dns</span>
@@ -665,7 +675,7 @@
         </div>
 
         <!-- Card 2: AI & Generative AI Systems -->
-        <div class="interactive-card-lavender p-6 rounded-3xl bg-[#FFFFFF] space-y-4">
+        <div class="interactive-card-lavender p-6 rounded-3xl bg-[#FFFFFF] space-y-4 reveal-scale-up stagger-2">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#F2EEFA] text-[#8E7CC3]">
               <span class="material-symbols-outlined text-xl">auto_awesome</span>
@@ -682,7 +692,7 @@
         </div>
 
         <!-- Card 3: Frontend & Full-Stack -->
-        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4">
+        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4 reveal-scale-up stagger-3">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#E7F7F5] text-[#195E57]">
               <span class="material-symbols-outlined text-xl">code_blocks</span>
@@ -699,7 +709,7 @@
         </div>
 
         <!-- Card 4: Database & Persistence -->
-        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4">
+        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4 reveal-scale-up stagger-4">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#FFF7E6] text-[#9E6B15]">
               <span class="material-symbols-outlined text-xl">storage</span>
@@ -716,7 +726,7 @@
         </div>
 
         <!-- Card 5: Cloud & DevOps -->
-        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4">
+        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4 reveal-scale-up stagger-5">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#E7F7F5] text-[#195E57]">
               <span class="material-symbols-outlined text-xl">cloud_sync</span>
@@ -733,7 +743,7 @@
         </div>
 
         <!-- Card 6: Domain & Professional Skills -->
-        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4">
+        <div class="interactive-card p-6 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] space-y-4 reveal-scale-up stagger-6">
           <div class="flex items-center gap-3">
             <div class="p-2.5 rounded-xl bg-[#F2EEFA] text-[#8E7CC3]">
               <span class="material-symbols-outlined text-xl">policy</span>
@@ -759,7 +769,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 reveal-on-scroll" id="education">
       
       <!-- Left: Awards & Recognition -->
-      <div class="space-y-6">
+      <div class="space-y-6 reveal-slide-left stagger-1">
         <div>
           <span class="font-mono text-xs uppercase tracking-widest text-[#8E7CC3] font-bold">04 // Excellence Recognized</span>
           <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-[#181A22] mt-1.5">
@@ -800,7 +810,7 @@
       </div>
 
       <!-- Right: Education & Certifications -->
-      <div class="space-y-6">
+      <div class="space-y-6 reveal-slide-right stagger-2">
         <div>
           <span class="font-mono text-xs uppercase tracking-widest text-[#8E7CC3] font-bold">05 // Academic Foundations</span>
           <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-[#181A22] mt-1.5">
@@ -893,7 +903,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         <!-- Left: Direct Contact Information Cards -->
-        <div class="lg:col-span-5 space-y-4">
+        <div class="lg:col-span-5 space-y-4 reveal-slide-left stagger-1">
           
           <!-- Email Card with Instant Copy Feature -->
           <div class="interactive-card p-5 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] shadow-sm">
@@ -957,7 +967,7 @@
         </div>
 
         <!-- Right: Full-Stack Backend Contact Form -->
-        <div class="lg:col-span-7">
+        <div class="lg:col-span-7 reveal-slide-right stagger-2">
           <div class="p-6 md:p-8 rounded-3xl bg-[#FFFFFF] border border-[#E8E3DA] shadow-md">
             
             <!-- Error Alert Container -->
