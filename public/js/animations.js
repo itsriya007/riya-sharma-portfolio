@@ -1,12 +1,12 @@
 /**
  * UI Animations & Micro-Interactions
- * Handles scroll reveal, stat counter animations, timeline effects, and interactive demo triggers.
+ * Handles scroll reveal, stat counter animations, and interactive avatar stage dynamics.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initStatCounters();
-  initTerminalSimulation();
+  initAvatarInteractions();
 });
 
 /**
@@ -18,8 +18,8 @@ function initScrollReveal() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -50px 0px',
-    threshold: 0.12
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.1
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -48,7 +48,7 @@ function initStatCounters() {
         const target = parseFloat(counter.getAttribute('data-counter-target'));
         const suffix = counter.getAttribute('data-counter-suffix') || '';
         const isDecimal = target % 1 !== 0;
-        const duration = 1400; // ms
+        const duration = 1200; // ms
         const startTime = performance.now();
 
         function updateCount(currentTime) {
@@ -81,56 +81,34 @@ function initStatCounters() {
 }
 
 /**
- * 3. Interactive Terminal Simulation in Hero Section
+ * 3. Interactive Avatar Speech Bubble & Highlights
  */
-function initTerminalSimulation() {
-  const simBtn = document.getElementById('simulateTerminalBtn');
-  const simLogsContainer = document.getElementById('terminalLogStream');
-  if (!simBtn || !simLogsContainer) return;
+function initAvatarInteractions() {
+  const bubble = document.getElementById('avatarSpeechBubble');
+  const stage = document.getElementById('heroAvatarStage');
+  if (!bubble || !stage) return;
 
-  const simulatedEvents = [
-    { text: '⚡ [policy-engine]: Incoming quote request from Tata Motors portal...', color: 'text-amber-300' },
-    { text: '✔ [underwrite]: Risk assessment computed in 14ms (IRDAI Tier-1 compliant)', color: 'text-emerald-400' },
-    { text: '✔ [db-pool]: Transaction committed to SQL cluster with zero deadlocks', color: 'text-emerald-400' },
-    { text: '🚀 [pm2-cluster]: Worker pid 28492 load: 18% | Memory: 42MB | Status: OK', color: 'text-[#7CC4FA]' }
+  const quotes = [
+    '⚡ "Designing resilient microservices & high-volume fintech pipelines."',
+    '🚗 "Sole backend owner for Tata Motors & Isuzu insurance platforms."',
+    '✨ "Google Build with AI Certified — combining LLM agents with robust APIs."',
+    '☕ "Specialized in Node.js, Express, React, PostgreSQL & cloud architecture."'
   ];
 
-  let isRunning = false;
+  let quoteIndex = 0;
 
-  simBtn.addEventListener('click', () => {
-    if (isRunning) return;
-    isRunning = true;
-    simBtn.disabled = true;
-    simBtn.innerHTML = '<span class="btn-spinner" style="width:12px; height:12px; border-width:1.5px;"></span> Running Pipeline...';
+  function cycleQuote() {
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+    bubble.style.transform = 'scale(0.92) translateY(2px)';
+    bubble.style.opacity = '0.3';
 
-    // Clear old extra logs
-    const existingDynamicLogs = simLogsContainer.querySelectorAll('.dynamic-log');
-    existingDynamicLogs.forEach(el => el.remove());
+    setTimeout(() => {
+      bubble.textContent = quotes[quoteIndex];
+      bubble.style.transform = 'scale(1) translateY(0)';
+      bubble.style.opacity = '1';
+    }, 160);
+  }
 
-    simulatedEvents.forEach((item, index) => {
-      setTimeout(() => {
-        const p = document.createElement('p');
-        p.className = `${item.color} dynamic-log text-[11px] font-mono leading-relaxed transition-all duration-200 opacity-0 translate-x-1`;
-        p.textContent = item.text;
-        simLogsContainer.appendChild(p);
-
-        // Trigger reflow & fade in
-        requestAnimationFrame(() => {
-          p.classList.remove('opacity-0', 'translate-x-1');
-        });
-
-        // Keep scroll at bottom of terminal
-        simLogsContainer.scrollTop = simLogsContainer.scrollHeight;
-
-        // Reset button after last line
-        if (index === simulatedEvents.length - 1) {
-          setTimeout(() => {
-            isRunning = false;
-            simBtn.disabled = false;
-            simBtn.innerHTML = '<span class="material-symbols-outlined text-xs">play_arrow</span> Run Simulation';
-          }, 600);
-        }
-      }, (index + 1) * 380);
-    });
-  });
+  // Click on stage or speech bubble
+  stage.addEventListener('click', cycleQuote);
 }

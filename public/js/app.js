@@ -1,10 +1,9 @@
 /**
  * Main Application Script for Riya Sharma Portfolio
- * Handles Theme Management, Contact Form AJAX, Pop-Up Modal, and Download Feedback.
+ * Handles Contact Form AJAX, Pop-Up Modal, CV Download Tracking, and Navigation.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeManager();
   initMobileMenu();
   initCvDownloadTracking();
   initContactForm();
@@ -13,40 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===================================================================
-   1. Theme Management (Espresso Dark Mode & Cream Light Mode)
-   =================================================================== */
-function initThemeManager() {
-  const themeToggleBtns = document.querySelectorAll('.theme-toggle-trigger');
-  const htmlEl = document.documentElement;
-
-  // Sync button icons and labels with current theme state
-  function updateThemeUI() {
-    const isDark = htmlEl.classList.contains('dark');
-    themeToggleBtns.forEach(btn => {
-      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-      btn.setAttribute('title', isDark ? 'Switch to Cream Light Mode' : 'Switch to Espresso Dark Mode');
-    });
-  }
-
-  // Toggle theme on click
-  themeToggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (htmlEl.classList.contains('dark')) {
-        htmlEl.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        htmlEl.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-      updateThemeUI();
-    });
-  });
-
-  updateThemeUI();
-}
-
-/* ===================================================================
-   2. Mobile Menu Dropdown
+   1. Mobile Menu Dropdown
    =================================================================== */
 function initMobileMenu() {
   const mobileToggleBtn = document.getElementById('mobileMenuBtn');
@@ -75,7 +41,7 @@ function initMobileMenu() {
 }
 
 /* ===================================================================
-   3. CV Download Feedback Toast Notification
+   2. CV Download Feedback Toast Notification
    =================================================================== */
 function initCvDownloadTracking() {
   const downloadLinks = document.querySelectorAll('a[download]');
@@ -92,7 +58,7 @@ function initCvDownloadTracking() {
     if (msgEl) msgEl.textContent = message;
     if (iconEl) {
       iconEl.textContent = isSuccess ? 'check_circle' : 'error';
-      iconEl.className = `material-symbols-outlined ${isSuccess ? 'text-[#7CC4FA]' : 'text-rose-500'} text-xl`;
+      iconEl.className = `material-symbols-outlined ${isSuccess ? 'text-[#FF78AC]' : 'text-rose-500'} text-xl`;
     }
 
     toastEl.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
@@ -121,14 +87,14 @@ function initCvDownloadTracking() {
     link.addEventListener('click', () => {
       showToast(
         'Curriculum Vitae Downloaded',
-        'Riya_Sharma_Resume.pdf file download has started.'
+        'Riya_Sharma_Resume.pdf download has started.'
       );
     });
   });
 }
 
 /* ===================================================================
-   4. Contact Form Submission via Node/Express Backend
+   3. Contact Form Submission via Node/Express Backend
    =================================================================== */
 function initContactForm() {
   const form = document.getElementById('portfolioContactForm');
@@ -186,7 +152,7 @@ function initContactForm() {
       <span>Sending Message...</span>
     `;
 
-    // Dynamic API Endpoint: Works seamlessly when loaded via http://localhost:3000 OR file:///
+    // Dynamic API Endpoint: Works seamlessly on localhost OR Vercel OR file:///
     const API_ENDPOINT = (window.location.protocol === 'http:' || window.location.protocol === 'https:')
       ? '/api/contact'
       : 'http://localhost:3000/api/contact';
@@ -225,7 +191,7 @@ function initContactForm() {
       }
     } catch (err) {
       console.error('Fetch error submitting contact form:', err);
-      const networkErrMsg = 'Network connection error. Server may be offline or unreachable. You can email directly to riya0077224@gmail.com.';
+      const networkErrMsg = 'Network connection error. You can email directly to riya0077224@gmail.com.';
       displayFormError(networkErrMsg);
       if (window.showAppToast) {
         window.showAppToast('Network Error', networkErrMsg, false);
@@ -247,7 +213,7 @@ function initContactForm() {
 }
 
 /* ===================================================================
-   5. Pop-Up Thank You Modal Controls
+   4. Pop-Up Thank You Modal Controls
    =================================================================== */
 function initModalHandlers() {
   const modal = document.getElementById('thankYouModal');
@@ -296,7 +262,7 @@ function initModalHandlers() {
 }
 
 /* ===================================================================
-   6. ScrollSpy for Active Desktop Nav
+   5. ScrollSpy for Active Desktop Nav
    =================================================================== */
 function initScrollSpy() {
   const sections = ['overview', 'about', 'experience', 'skills', 'education', 'contact'];
@@ -306,7 +272,7 @@ function initScrollSpy() {
 
   window.addEventListener('scroll', () => {
     let current = 'overview';
-    const scrollPosition = window.scrollY + 180;
+    const scrollPosition = window.scrollY + 140;
 
     sections.forEach(id => {
       const section = document.getElementById(id);
@@ -318,11 +284,11 @@ function initScrollSpy() {
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
       if (href === `#${current}`) {
-        link.classList.add('border-b-2', 'border-[#7CC4FA]', 'text-[#3B2418]', 'dark:text-[#7CC4FA]', 'font-bold');
-        link.classList.remove('text-[#755849]', 'dark:text-[#C7B9B0]');
+        link.classList.add('border-b-2', 'border-[#FF78AC]', 'text-[#FF78AC]', 'font-bold');
+        link.classList.remove('text-[#4E5564]');
       } else {
-        link.classList.remove('border-b-2', 'border-[#7CC4FA]', 'text-[#3B2418]', 'dark:text-[#7CC4FA]', 'font-bold');
-        link.classList.add('text-[#755849]', 'dark:text-[#C7B9B0]');
+        link.classList.remove('border-b-2', 'border-[#FF78AC]', 'text-[#FF78AC]', 'font-bold');
+        link.classList.add('text-[#4E5564]');
       }
     });
   }, { passive: true });

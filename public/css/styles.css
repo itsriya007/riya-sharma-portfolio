@@ -1,176 +1,285 @@
 /* ===================================================================
-   Riya Sharma Developer Portfolio - Editorial & Espresso Dark Mode Styles
+   Riya Sharma Developer Portfolio - Light, Fresh & Professional Theme
+   Palette: Periwinkle Lavender (#8E7CC3), Soft Rose Pink (#FF6584),
+            Fresh Mint Teal (#3BAAA0), Honey Amber (#E5A93C),
+            and Soft Ivory Cream (#FAF8F5).
    =================================================================== */
 
-/* Custom CSS Variables */
+/* Root Design Variables */
 :root {
-  --color-cream-bg: #FAF6F0;
-  --color-cream-surface: #FFFFFF;
-  --color-cream-surface-alt: #F4ECE4;
-  --color-brown-primary: #3B2418;
-  --color-brown-secondary: #755849;
-  --color-brown-muted: #9E8C82;
-  --color-baby-blue: #7CC4FA;
-  --color-baby-blue-hover: #60B2F8;
-  --color-baby-blue-text: #1E1815;
-  --color-border-light: rgba(59, 36, 24, 0.12);
-  --color-border-light-high: rgba(59, 36, 24, 0.22);
-  --shadow-warm-sm: 0 2px 8px -2px rgba(59, 36, 24, 0.05), 0 1px 3px -1px rgba(59, 36, 24, 0.03);
-  --shadow-warm-md: 0 8px 24px -4px rgba(59, 36, 24, 0.07), 0 4px 10px -2px rgba(59, 36, 24, 0.04);
-  --shadow-warm-lg: 0 16px 36px -8px rgba(59, 36, 24, 0.12), 0 6px 16px -3px rgba(59, 36, 24, 0.06);
+  --color-canvas: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F1EA;
+  --color-border: #E8E3DA;
+  --color-border-hover: #D5CEBF;
+
+  /* Primary Accent: Lavender / Periwinkle (Matches Hero Avatar Circle) */
+  --color-lavender: #8E7CC3;
+  --color-lavender-hover: #7967B2;
+  --color-lavender-light: #F2EEFA;
+  --color-border-lavender: rgba(142, 124, 195, 0.35);
+
+  /* Secondary Accent: Soft Rose Pink (Vibrant CTAs & Highlights) */
+  --color-pink: #FF6584;
+  --color-pink-hover: #F04F70;
+  --color-pink-light: #FFF0F4;
+  --color-pink-dark: #B82C4C;
+  --color-border-pink: rgba(255, 101, 132, 0.35);
+
+  /* Tertiary Accent: Fresh Mint Teal (Cloud, Fintech & Reliability) */
+  --color-teal: #3BAAA0;
+  --color-teal-hover: #2F938A;
+  --color-teal-light: #E7F7F5;
+  --color-teal-dark: #195E57;
+  --color-border-teal: rgba(59, 170, 160, 0.35);
+
+  /* Blazer & Circuit Gold */
+  --color-gold: #E5A93C;
+  --color-gold-light: #FFF7E6;
+  --color-gold-dark: #9E6B15;
+
+  /* Typography & Ink (High Contrast for Absolute Readability) */
+  --color-ink-primary: #181A22;
+  --color-ink-secondary: #484F60;
+  --color-ink-muted: #788194;
+
+  /* Smooth Shadows */
+  --shadow-sm: 0 2px 8px -2px rgba(24, 26, 34, 0.04);
+  --shadow-md: 0 8px 24px -4px rgba(24, 26, 34, 0.06), 0 2px 8px -1px rgba(142, 124, 195, 0.04);
+  --shadow-lg: 0 16px 36px -6px rgba(24, 26, 34, 0.08), 0 4px 16px -2px rgba(142, 124, 195, 0.08);
+  --shadow-glow-lavender: 0 12px 30px -4px rgba(142, 124, 195, 0.35);
+  --shadow-glow-pink: 0 12px 30px -4px rgba(255, 101, 132, 0.35);
+  --shadow-glow-teal: 0 12px 30px -4px rgba(59, 170, 160, 0.3);
 }
 
-/* Espresso Dark Mode (NO pure #000000 black) */
-html.dark {
-  --color-espresso-bg: #1E1815;
-  --color-espresso-surface: #28201B;
-  --color-espresso-surface-alt: #322822;
-  --color-espresso-surface-high: #3C302A;
-  --color-espresso-border: #4A3C33;
-  --color-espresso-border-light: #5A493E;
-  --color-espresso-text: #F5EFEA;
-  --color-espresso-text-secondary: #C7B9B0;
-  --color-espresso-text-muted: #9E8C82;
-  --shadow-warm-sm: 0 4px 14px -2px rgba(0, 0, 0, 0.35);
-  --shadow-warm-md: 0 10px 28px -4px rgba(0, 0, 0, 0.45);
-  --shadow-warm-lg: 0 18px 40px -6px rgba(0, 0, 0, 0.65), 0 0 20px rgba(124, 196, 250, 0.06);
+/* Base Body & Layout */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-/* Base Body Setup */
 body {
-  background-color: var(--color-cream-bg);
-  color: var(--color-brown-primary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--color-canvas);
+  color: var(--color-ink-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  line-height: 1.6;
 }
 
-html.dark body {
-  background-color: #1E1815;
-  color: #F5EFEA;
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
 }
 
-/* Material Symbols Optical Alignment */
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
+.font-mono, code, pre {
+  font-family: 'Space Grotesk', 'JetBrains Mono', monospace;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF6F0;
-}
-html.dark ::-webkit-scrollbar-track {
-  background: #1E1815;
+  background: var(--color-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: #C7B9B0;
-  border-radius: 5px;
-  border: 2px solid #FAF6F0;
-}
-html.dark ::-webkit-scrollbar-thumb {
-  background: #4A3C33;
-  border-color: #1E1815;
+  background: #D8D2C5;
+  border-radius: 9999px;
+  border: 2px solid var(--color-canvas);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #755849;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #7CC4FA;
+  background: var(--color-lavender);
 }
 
-/* ===================================================================
-   Micro-Interactions & Hover States
-   =================================================================== */
+/* Selection Highlight */
+::selection {
+  background-color: #E2DAF5;
+  color: #181A22;
+}
 
-/* Baby Blue Primary Button Glow */
-.btn-baby-blue {
-  background-color: #7CC4FA;
-  color: #1E1815;
-  box-shadow: 0 2px 10px rgba(124, 196, 250, 0.35);
+/* ---------- Buttons & CTAs ---------- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-pink) 0%, #FF78AC 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-pink);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.btn-baby-blue:hover {
-  background-color: #60B2F8;
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-pink-hover) 0%, #FF6584 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(124, 196, 250, 0.45);
+  box-shadow: 0 14px 32px -4px rgba(255, 101, 132, 0.5);
 }
-.btn-baby-blue:active {
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-lavender {
+  background: linear-gradient(135deg, var(--color-lavender) 0%, #9F8ED4 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-lavender);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.btn-lavender:hover {
+  background: linear-gradient(135deg, var(--color-lavender-hover) 0%, var(--color-lavender) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -4px rgba(142, 124, 195, 0.5);
+}
+.btn-lavender:active {
   transform: translateY(0) scale(0.98);
 }
 
-/* Secondary Button Outline */
-.btn-outline-warm {
-  border: 1px solid rgba(59, 36, 24, 0.3);
-  color: #3B2418;
-  background-color: transparent;
-  transition: all 0.25s ease;
+.btn-teal {
+  background: var(--color-teal);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-teal);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.btn-outline-warm:hover {
-  background-color: rgba(59, 36, 24, 0.05);
-  border-color: #3B2418;
+.btn-teal:hover {
+  background: var(--color-teal-hover);
   transform: translateY(-2px);
+  box-shadow: 0 14px 32px -4px rgba(59, 170, 160, 0.45);
 }
-html.dark .btn-outline-warm {
-  border-color: rgba(245, 239, 234, 0.25);
-  color: #F5EFEA;
-}
-html.dark .btn-outline-warm:hover {
-  background-color: rgba(245, 239, 234, 0.08);
-  border-color: #7CC4FA;
-  color: #7CC4FA;
+.btn-teal:active {
+  transform: translateY(0) scale(0.98);
 }
 
-/* Card Elevation & Glow on Hover */
+.btn-outline {
+  background: #FFFFFF;
+  color: var(--color-ink-primary);
+  border: 1.5px solid var(--color-border);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.btn-outline:hover {
+  border-color: var(--color-lavender);
+  color: var(--color-lavender);
+  background: var(--color-lavender-light);
+  transform: translateY(-2px);
+}
+
+/* ---------- Cards & Bento Surfaces ---------- */
 .interactive-card {
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.28s ease;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .interactive-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px -6px rgba(59, 36, 24, 0.1), 0 4px 10px -2px rgba(59, 36, 24, 0.04);
-}
-html.dark .interactive-card:hover {
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.65), 0 0 24px rgba(124, 196, 250, 0.08);
-  border-color: rgba(124, 196, 250, 0.35);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-lavender);
 }
 
-/* Technical Skill Badges */
+.interactive-card-teal {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-teal);
+  box-shadow: var(--shadow-md);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.interactive-card-teal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -6px rgba(59, 170, 160, 0.25);
+  border-color: var(--color-teal);
+}
+
+.interactive-card-lavender {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-lavender);
+  box-shadow: var(--shadow-md);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.interactive-card-lavender:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -6px rgba(142, 124, 195, 0.3);
+  border-color: var(--color-lavender);
+}
+
+/* ---------- Skill Pills ---------- */
 .skill-pill {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .skill-pill:hover {
-  transform: translateY(-2px) scale(1.03);
-  border-color: #7CC4FA !important;
-  color: #045285;
-}
-html.dark .skill-pill:hover {
-  color: #7CC4FA;
-  background-color: #382E27;
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--color-lavender) !important;
+  color: var(--color-lavender) !important;
+  background-color: var(--color-lavender-light) !important;
 }
 
-/* Electric Halo Accent */
-.electric-glow {
-  box-shadow: 0 0 20px rgba(124, 196, 250, 0.3);
-}
-html.dark .electric-glow {
-  box-shadow: 0 0 28px rgba(124, 196, 250, 0.45);
+/* ---------- Hero Avatar Stage ---------- */
+.hero-portrait-stage {
+  position: relative;
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF8FE 50%, #F5F8F7 100%);
+  border: 1.5px solid rgba(142, 124, 195, 0.28);
+  border-radius: 36px;
+  padding: 24px;
+  box-shadow: 0 20px 50px -10px rgba(142, 124, 195, 0.18), 0 10px 25px -6px rgba(59, 170, 160, 0.12);
+  overflow: visible;
 }
 
-/* ===================================================================
-   Scroll Reveal Animations
-   =================================================================== */
+.hero-avatar-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 14px 28px rgba(142, 124, 195, 0.2));
+}
 
+.hero-avatar-img:hover {
+  transform: scale(1.03) translateY(-4px);
+}
+
+/* Floating animation keyframes */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(7px) rotate(-1deg); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.08); }
+}
+
+.anim-float-1 { animation: floatSlow 4.5s ease-in-out infinite; }
+.anim-float-2 { animation: floatReverse 5s ease-in-out infinite 0.5s; }
+.anim-float-3 { animation: floatSlow 4s ease-in-out infinite 1s; }
+.anim-float-4 { animation: floatReverse 4.8s ease-in-out infinite 1.5s; }
+
+.anim-pulse-subtle {
+  animation: pulseSubtle 4s ease-in-out infinite;
+}
+
+/* Floating Badge Hover */
+.badge-floating {
+  backdrop-filter: blur(10px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.badge-floating:hover {
+  transform: scale(1.08) translateY(-4px) !important;
+  box-shadow: 0 12px 24px rgba(142, 124, 195, 0.28);
+}
+
+/* ---------- Scroll Reveal Animations ---------- */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
@@ -180,69 +289,22 @@ html.dark .electric-glow {
   transform: translateY(0);
 }
 
-/* Stagger Delays for Grouped Cards */
+/* Stagger Delays */
 .stagger-1 { transition-delay: 0.08s; }
 .stagger-2 { transition-delay: 0.16s; }
 .stagger-3 { transition-delay: 0.24s; }
 .stagger-4 { transition-delay: 0.32s; }
-.stagger-5 { transition-delay: 0.40s; }
 
-/* Hero Entrance Animations */
+/* Page load entrance */
 @keyframes heroFadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-animate-1 {
-  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.hero-animate-2 {
-  opacity: 0;
-  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-}
-.hero-animate-3 {
-  opacity: 0;
-  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-.hero-animate-4 {
-  opacity: 0;
-  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
-}
-
-/* Pulse Glow Keyframes */
-@keyframes softPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.65;
-    transform: scale(1.08);
-  }
-}
-.animate-soft-pulse {
-  animation: softPulse 2.5s infinite ease-in-out;
-}
-
-/* Timeline Animated Line */
-.timeline-stem {
-  position: absolute;
-  left: 15px;
-  top: 10px;
-  bottom: 10px;
-  width: 2px;
-  background: linear-gradient(to bottom, #7CC4FA 0%, #755849 50%, rgba(117, 88, 73, 0.2) 100%);
-  border-radius: 2px;
-}
-html.dark .timeline-stem {
-  background: linear-gradient(to bottom, #7CC4FA 0%, #4A3C33 50%, rgba(74, 60, 51, 0.2) 100%);
-}
+.hero-animate-1 { animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hero-animate-2 { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards; }
+.hero-animate-3 { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.24s forwards; }
+.hero-animate-4 { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.36s forwards; }
 
 /* Spinner for Submit Button */
 @keyframes spin {
@@ -250,16 +312,16 @@ html.dark .timeline-stem {
 }
 .btn-spinner {
   display: inline-block;
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(30, 24, 21, 0.3);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
-  border-top-color: #1E1815;
-  animation: spin 0.7s linear infinite;
+  border-top-color: #FFFFFF;
+  animation: spin 0.6s linear infinite;
 }
 
-/* Code Syntax Embellishments */
-.code-token-kw { color: #7CC4FA; font-weight: 600; }
-.code-token-fn { color: #FCD34D; font-weight: 500; }
-.code-token-str { color: #86EFAC; }
-.code-token-cm { color: #9E8C82; font-style: italic; }
+/* Focus Visible Access */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-lavender);
+  outline-offset: 2px;
+}
