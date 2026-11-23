@@ -265,31 +265,34 @@ function initModalHandlers() {
    5. ScrollSpy for Active Desktop Nav
    =================================================================== */
 function initScrollSpy() {
-  const sections = ['overview', 'about', 'experience', 'skills', 'education', 'contact'];
   const navLinks = document.querySelectorAll('.desktop-nav-link');
-
   if (!navLinks.length) return;
 
-  window.addEventListener('scroll', () => {
-    let current = 'overview';
-    const scrollPosition = window.scrollY + 140;
+  const activeCls = ['text-[#8E7CC3]', 'font-bold', 'border-b-2', 'border-[#8E7CC3]'];
 
-    sections.forEach(id => {
-      const section = document.getElementById(id);
-      if (section && section.offsetTop <= scrollPosition) {
-        current = id;
-      }
-    });
+  function update() {
+    const scrollPosition = window.scrollY + 140;
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 4;
+    let activeHref = null;
+    let bestTop = -1;
 
     navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === `#${current}`) {
-        link.classList.add('border-b-2', 'border-[#FF78AC]', 'text-[#FF78AC]', 'font-bold');
-        link.classList.remove('text-[#4E5564]');
-      } else {
-        link.classList.remove('border-b-2', 'border-[#FF78AC]', 'text-[#FF78AC]', 'font-bold');
-        link.classList.add('text-[#4E5564]');
+      const section = document.querySelector(link.getAttribute('href'));
+      if (section && section.offsetTop <= scrollPosition && section.offsetTop > bestTop) {
+        bestTop = section.offsetTop;
+        activeHref = link.getAttribute('href');
       }
     });
-  }, { passive: true });
+
+    if (atBottom) activeHref = '#contact';
+
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === activeHref;
+      activeCls.forEach(c => link.classList.toggle(c, isActive));
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 }
